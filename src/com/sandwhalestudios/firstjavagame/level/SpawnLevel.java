@@ -27,7 +27,7 @@ public class SpawnLevel extends Level{
 			e.printStackTrace();
 			System.out.println("Exception: Could not load level file!");
 		}
-		add(new Chaser(45, 22));
+		add(new Star(45, 22));
 		add(new Star(50, 22));
 	}	
 	
