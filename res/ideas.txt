@@ -2,7 +2,7 @@ Metal Game - ultimate cheese - over the top - funny
 Top down style - like Gungean / Binding of Issac
 
 - Main character: metal head
-	- 4 players: Lead, Drums, Bass, Singer
+	- 4 players: Lead, Drums, Bass, Singer (unlock: Keyboardist, Violinist)
 
 - Attacks
 	- stage dive (dodge)
@@ -20,8 +20,8 @@ Top down style - like Gungean / Binding of Issac
 	- Folk Metal Forest		-Equilibrium / Korpiklaani / Ensiferum / Eluveitie
 	- Viking Storm Lands		-Amon Amarth
 	- Pirate Bay			-Alestorm
-	- Melodic Dream Realm		-Dark Tranquility / 
-	- Grind Core Slaughter House	-???
+	- Melodic Dream Realm		-Dark Tranquility / Omni Gatherum
+	- Grind Core Slaughter House	-Napalm Death
 	- Death Metal Depths		-Cannibal Corpse / Entombed / Septic Flesh / Vader / Bolt Thrower
-	- Sludge Metal Swamps		-Electric Wizard / 
+	- Sludge Metal Swamps		-Electric Wizard / Dopethrone
 	- Classic Rock Retirement Home	-Journey / Blue Oyster Cult / Zeppelin / Rolling Stones / The Who

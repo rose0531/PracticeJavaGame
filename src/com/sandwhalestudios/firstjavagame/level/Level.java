@@ -24,6 +24,8 @@ public class Level {
 	private List<Particle> particles = new ArrayList<Particle>();	
 	private List<Player> players = new ArrayList<Player>();
 	
+	public static Level spawn = new SpawnLevel("/textures/levels/SpawnLevel.png");
+	
 	private Comparator<Node> nodeSorter = new Comparator<Node>() {
 		public int compare(Node n0, Node n1) {
 			if(n1.fCost < n0.fCost) return 1;
@@ -32,7 +34,6 @@ public class Level {
 		}		
 	};
 	
-	public static Level spawn = new SpawnLevel("/textures/levels/SpawnLevel.png");
 	
 	public Level(int width, int height) {
 		this.width = width;
@@ -223,7 +224,7 @@ public class Level {
 				if(at == null) continue;
 				if(at.solid()) continue;
 				Vector2i a = new Vector2i(x + xi, y + yi);
-				double gCost = current.gCost + getDistance(current.tile, a);
+				double gCost = current.gCost + (getDistance(current.tile, a) > 1 ? 0.95 : 1);
 				double hCost = getDistance(a, goal);
 				Node node = new Node(a, current, gCost, hCost);
 				if(vectorInList(closedList, a) && gCost >= current.gCost) continue;
