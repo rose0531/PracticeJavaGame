@@ -43,10 +43,11 @@ public class Player extends Mob{
 
 	private AnimatedSprite animSprite = playerAnimFrontBob;
 	
+	private Sprite projectileSprite = Sprite.fireBall;
+	
 	public Player(Keyboard input) {
 		this.input = input;
 		dir = Direction.DOWN;
-		//sprite = Sprite.player32FrontStill;
 	}
 	
 	public Player(int x, int y, Keyboard input) {
@@ -54,7 +55,6 @@ public class Player extends Mob{
 		this.y = y;
 		this.input = input;
 		dir = Direction.DOWN;
-		//sprite = Sprite.player32FrontStill;
 		fireRate = SoundWaveProjectile.FIRE_RATE;
 	}
 	
@@ -157,7 +157,7 @@ public class Player extends Mob{
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
 			double theta = Math.atan2(dy, dx); //must put y first then x
-			shoot(x, y, theta);
+			shoot(x, y, theta, projectileSprite);
 			fireRate = SoundWaveProjectile.FIRE_RATE;
 		}
 	}

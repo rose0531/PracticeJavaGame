@@ -21,14 +21,8 @@ public class Sprite {
 	public static Sprite castleFloor = new Sprite(16, 6, 0, SpriteSheet.tiles);
 	
 	//Weapon, Projectile Sprites:
-	public static Sprite ironMaidenNote1 = new Sprite(16, 1, 1, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote2 = new Sprite(16, 1, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote3 = new Sprite(16, 2, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote4 = new Sprite(16, 3, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote5 = new Sprite(16, 4, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote6 = new Sprite(16, 5, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote7 = new Sprite(16, 6, 0, SpriteSheet.projectiles);
-	public static Sprite ironMaidenNote8 = new Sprite(16, 7, 0, SpriteSheet.projectiles);
+	public static Sprite fireBall = new Sprite(16, 1, 1, SpriteSheet.projectiles);
+	public static Sprite enemyProjectile = new Sprite(16, 2, 1, SpriteSheet.projectiles);
 	
 	//Corsshair Sprites:
 	public static Sprite crosshair = new Sprite(16, 0, 1, SpriteSheet.projectiles);

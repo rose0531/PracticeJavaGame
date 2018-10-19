@@ -11,6 +11,7 @@ public abstract class Mob extends Entity{
 	protected Direction dir;
 	protected boolean walking = false;
 	private int anim = 0;
+	protected boolean isSolid = true;
 	
 	protected enum Direction{
 		UP, DOWN, LEFT, RIGHT
@@ -62,25 +63,25 @@ public abstract class Mob extends Entity{
 	
 	public abstract void render(Screen screen);
 	
-	protected void shoot(double x, double y, double theta) {
+	protected void shoot(double x, double y, double theta, Sprite sprite) {
 		if(anim >= 8) anim = 0;
 		Projectile p = new SoundWaveProjectile(x, y, theta);
 		if(anim == 0)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 1)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 2)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 3)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 4)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 5)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else if(anim == 6)
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		else
-			p.setSprite(Sprite.ironMaidenNote1);
+			p.setSprite(sprite);
 		level.add(p);
 		anim++;
 	}
@@ -98,5 +99,9 @@ public abstract class Mob extends Entity{
 			if(level.getTile(ix, iy).solid()) solid = true;
 		}
 		return solid;
+	}
+	
+	protected boolean isSolid() {
+		return isSolid;
 	}
 }
