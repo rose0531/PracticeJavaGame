@@ -4,19 +4,18 @@ import com.sandwhalestudios.firstjavagame.entity.spawner.ParticleSpawner;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 
-public class EnemyProjectile extends Projectile{
+public class SphereProjectile extends Projectile{
 	
 	public static final int FIRE_RATE = 20; //Higher is slower
 	private int anim = 0;
 
-	
-	public EnemyProjectile(double x, double y, double dir) {
+	public SphereProjectile(double x, double y, double dir) {
 		super(x, y, dir);
 		range = random.nextInt(20) + 300;
 		speed = 4.5f;//3.5
 		damage = 20;
 		fireRateMultiplier = 1;
-		sprite = Sprite.enemyProjectile;
+		sprite = Sprite.fireBall;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);
 	}
@@ -46,4 +45,5 @@ public class EnemyProjectile extends Projectile{
 	public void render(Screen screen) {
 		screen.renderProjectile((int)x, (int)y, this);
 	}
+
 }

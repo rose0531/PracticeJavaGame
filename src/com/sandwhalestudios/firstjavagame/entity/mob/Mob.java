@@ -3,7 +3,7 @@ package com.sandwhalestudios.firstjavagame.entity.mob;
 import com.sandwhalestudios.firstjavagame.entity.Entity;
 import com.sandwhalestudios.firstjavagame.entity.particle.Particle;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
-import com.sandwhalestudios.firstjavagame.entity.projectile.SoundWaveProjectile;
+import com.sandwhalestudios.firstjavagame.entity.projectile.SphereProjectile;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 
@@ -63,25 +63,12 @@ public abstract class Mob extends Entity{
 	
 	public abstract void render(Screen screen);
 	
+	
+	//TODO: Change Sprite to Projectile for shoot method
 	protected void shoot(double x, double y, double theta, Sprite sprite) {
-		if(anim >= 8) anim = 0;
-		Projectile p = new SoundWaveProjectile(x, y, theta);
-		if(anim == 0)
-			p.setSprite(sprite);
-		else if(anim == 1)
-			p.setSprite(sprite);
-		else if(anim == 2)
-			p.setSprite(sprite);
-		else if(anim == 3)
-			p.setSprite(sprite);
-		else if(anim == 4)
-			p.setSprite(sprite);
-		else if(anim == 5)
-			p.setSprite(sprite);
-		else if(anim == 6)
-			p.setSprite(sprite);
-		else
-			p.setSprite(sprite);
+		//TODO: add code to animate projectiles
+		Projectile p = new SphereProjectile(x, y, theta);
+		p.setSprite(sprite);
 		level.add(p);
 		anim++;
 	}

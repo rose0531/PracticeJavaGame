@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sandwhalestudios.firstjavagame.Game;
 import com.sandwhalestudios.firstjavagame.entity.mob.Mob.Direction;
+import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
 import com.sandwhalestudios.firstjavagame.graphics.AnimatedSprite;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
@@ -25,6 +26,7 @@ public class Shooter extends Mob{
 	private boolean flip = false;
 	private int randomMoveTimer = 0;
 	
+	//TODO: add "Mob" as a parameter for Shooter constructor
 	public Shooter(int x, int y) {
 		this.x = x << 4;
 		this.y = y << 4;
