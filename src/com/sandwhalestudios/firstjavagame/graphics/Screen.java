@@ -204,5 +204,24 @@ public class Screen {
 		Color.RGBtoHSB(r, g, b, hsv);
 		return hsv;
 	}
+
+	public void drawRect(int xp, int yp, int w, int h, int color, boolean fixed) {
+		if(fixed) {
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		for(int x = xp; x < xp + w; x++) {
+			if(yp >= height || x < 0 || x >= width) continue;
+			if(yp > 0) pixels[x + yp * width] = color;
+			if(yp + h >= height) continue;
+			if(yp + h > 0) pixels[x + (yp + h) * width] = color;
+		}
+		for(int y = yp; y <= yp + h; y++) {
+			if(xp >= width || y < 0 || y >= height) continue;
+			if(xp > 0) pixels[xp + y * width] = color;
+			if(xp + w >= width) continue;
+			if(xp + w > 0) pixels[(xp + w) + y * width] = color;
+		}
+	}
 	
 }

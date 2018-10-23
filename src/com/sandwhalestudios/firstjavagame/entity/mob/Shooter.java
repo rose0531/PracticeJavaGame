@@ -10,6 +10,7 @@ import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 import com.sandwhalestudios.firstjavagame.graphics.SpriteSheet;
 import com.sandwhalestudios.firstjavagame.level.Node;
+import com.sandwhalestudios.firstjavagame.util.Debug;
 import com.sandwhalestudios.firstjavagame.util.Vector2i;
 
 public class Shooter extends Mob{
@@ -137,6 +138,7 @@ public class Shooter extends Mob{
 	}
 
 	public void render(Screen screen) {
+		Debug.drawRect(screen, 30*16, 25*16, 100, 40, true);
 		screen.renderMob((int)x, (int)y, this, flip);
 	}
 
