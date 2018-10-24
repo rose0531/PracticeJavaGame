@@ -6,6 +6,7 @@ import com.sandwhalestudios.firstjavagame.Game;
 import com.sandwhalestudios.firstjavagame.entity.mob.Mob.Direction;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
 import com.sandwhalestudios.firstjavagame.graphics.AnimatedSprite;
+import com.sandwhalestudios.firstjavagame.graphics.Font;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 import com.sandwhalestudios.firstjavagame.graphics.SpriteSheet;
