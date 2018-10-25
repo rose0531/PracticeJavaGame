@@ -42,12 +42,12 @@ public class Screen {
 			xp -= xOffset;
 			yp -= yOffset;
 		}
-		for(int y = 0; y < sheet.HEIGHT; y++) {
+		for(int y = 0; y < sheet.getHeight(); y++) {
 			int ya = y + yp;
-			for(int x = 0; x < sheet.WIDTH; x++) {
+			for(int x = 0; x < sheet.getWidth(); x++) {
 				int xa = x + xp;
 				if(xa < 0 || xa >= width || ya < 0 || ya >= height) continue;
-				int col = sheet.pixels[x + y * sheet.WIDTH];
+				int col = sheet.pixels[x + y * sheet.getWidth()];
 				if(col != 0xffff00ff)
 					pixels[xa + ya * width] = col;
 			}
@@ -130,6 +130,80 @@ public class Screen {
 	}
 	
 	
+	
+	public void renderProjectile(int xp, int yp, Projectile p, double angle) {
+		yp -= yOffset;
+		xp -= xOffset;
+		for(int y = 0; y < p.getSpriteSize(); y++) {
+			int ya = y + yp; //ya means y absolute
+			for(int x = 0; x < p.getSpriteSize(); x++) {
+				int xa = x + xp; //xa means x absolute
+				if(xa < -p.getSpriteSize() || xa  >= width || ya < 0 || ya >= height) break;
+				if(xa < 0) xa = 0;
+				
+				int[] rpixels = rotate(p.getSprite().pixels, p.getSpriteSize(), p.getSpriteSize(), angle);
+				int col = rpixels[x + y * p.getSpriteSize()];
+				
+				if(col != 0xffff00ff) {
+					if(col == 0xffc500c5) {
+						float[] hsv = getHSV(pixels[xa + ya * width]);
+						if(hsv[2] > 0.2f)
+							hsv[2] -= 0.2f;
+						else
+							hsv[2] = 0.0f;
+						pixels[xa + ya * width] = Color.HSBtoRGB(hsv[0], hsv[1], hsv[2]);
+					}else
+						pixels[xa + ya * width] = col;
+				}
+			}
+		}
+	}
+	
+	
+	private int[] rotate(int[] pixels, int height, int width, double angle) {
+		int[] result = new int[width * height];
+		
+		double nx_x = rotX(-angle, 1.0, 0.0);
+		double nx_y = rotY(-angle, 1.0, 0.0);
+		double ny_x = rotX(-angle, 0.0, 1.0);
+		double ny_y = rotY(-angle, 0.0, 1.0);
+		
+		double x0 = rotX(-angle, -width / 2.0, -height / 2.0) + width / 2.0;
+		double y0 = rotY(-angle, -width / 2.0, -height / 2.0) + height / 2.0;
+		
+		for(int y = 0; y < height; y++) {
+			double x1 = x0;
+			double y1 = y0;
+			for(int x = 0; x < width; x++) {
+				int xx = (int) x1;
+				int yy = (int) y1;
+				int col = 0;
+				if(xx < 0 || xx >= width || yy < 0 || yy >= height) col = 0xffff00ff;
+				else col = pixels[xx + yy * width];
+				result[x + y * width] = col;
+				x1 += nx_x;
+				y1 += nx_y;
+			}
+			x0 += ny_x;
+			y0 += ny_y;
+		}
+		
+		return result;
+	}
+	
+	private double rotX(double angle, double x, double y) {
+		double cos = Math.cos(angle - Math.PI / 2);
+		double sin = Math.sin(angle - Math.PI / 2);
+		return x * cos + y * -sin;
+	}
+	
+	private double rotY(double angle, double x, double y) {
+		double cos = Math.cos(angle - Math.PI / 2);
+		double sin = Math.sin(angle - Math.PI / 2);
+		return x * sin + y * cos;
+	}
+	
+	
 	public void renderMob(int xp, int yp, Sprite sprite, boolean flip) {
 		yp -= yOffset + 16;
 		xp -= xOffset + 16;
@@ -203,6 +277,25 @@ public class Screen {
 		float[] hsv = new float[3];
 		Color.RGBtoHSB(r, g, b, hsv);
 		return hsv;
+	}
+
+	public void drawRect(int xp, int yp, int w, int h, int color, boolean fixed) {
+		if(fixed) {
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		for(int x = xp; x < xp + w; x++) {
+			if(yp >= height || x < 0 || x >= width) continue;
+			if(yp > 0) pixels[x + yp * width] = color;
+			if(yp + h >= height) continue;
+			if(yp + h > 0) pixels[x + (yp + h) * width] = color;
+		}
+		for(int y = yp; y <= yp + h; y++) {
+			if(xp >= width || y < 0 || y >= height) continue;
+			if(xp > 0) pixels[xp + y * width] = color;
+			if(xp + w >= width) continue;
+			if(xp + w > 0) pixels[(xp + w) + y * width] = color;
+		}
 	}
 	
 }

@@ -3,7 +3,6 @@ package com.sandwhalestudios.firstjavagame;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -12,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.sandwhalestudios.firstjavagame.entity.mob.Player;
+import com.sandwhalestudios.firstjavagame.graphics.Font;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 import com.sandwhalestudios.firstjavagame.graphics.SpriteSheet;
@@ -41,6 +41,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	private Screen screen;
+	private Font font;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //create image to draw on
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //access image to draw on
@@ -56,6 +57,7 @@ public class Game extends Canvas implements Runnable{
 		TileCoordinate playerSpawn = new TileCoordinate(38, 22);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		level.add(player);
+		font = new Font();
 		
 		addKeyListener(key);
 		
@@ -135,7 +137,7 @@ public class Game extends Canvas implements Runnable{
 		double xScroll = player.getX() - screen.width / 2;
 		double yScroll = player.getY() - screen.height / 2;
 		level.render((int)xScroll, (int)yScroll, screen);
-		//screen.renderSheet(40, 40, SpriteSheet.playerDown, false);
+		//font.render(0, 0, screen, "Health: 9");
 		
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];

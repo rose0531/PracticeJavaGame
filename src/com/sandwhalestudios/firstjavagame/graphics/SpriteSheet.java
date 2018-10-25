@@ -7,8 +7,9 @@ import javax.imageio.ImageIO;
 
 public class SpriteSheet {
 	private String path;
-	public final int SIZE;
-	public final int WIDTH, HEIGHT;
+	public final int SIZE; //in pixels
+	public final int SPRITE_WIDTH, SPRITE_HEIGHT;
+	private int width, height; //in pixels
 	public int[] pixels;
 	
 	private Sprite[] sprites;
@@ -36,19 +37,19 @@ public class SpriteSheet {
 	public SpriteSheet(SpriteSheet sheet, int x, int y, int width, int height, int spriteSize) {
 		int xx = x * spriteSize;
 		int yy = y * spriteSize;
-		int w = width * spriteSize;
-		int h = height * spriteSize;
-		if(width == height) SIZE = width;
+		this.width = width * spriteSize;
+		this.height = height * spriteSize;
+		SPRITE_WIDTH = spriteSize;
+		SPRITE_HEIGHT = spriteSize;
+		if(width == height) SIZE = this.width;
 		else SIZE = -1;
-		WIDTH = w;
-		HEIGHT = h;
-		pixels = new int[w * h];
+		pixels = new int[this.width * this.height];
 		
-		for(int y0 = 0; y0 < h; y0++) {
+		for(int y0 = 0; y0 < this.height; y0++) {
 			int yp = yy + y0;
-			for(int x0 = 0; x0 < w; x0++) {
+			for(int x0 = 0; x0 < this.width; x0++) {
 				int xp = xx + x0;
-				pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.WIDTH];
+				pixels[x0 + y0 * this.width] = sheet.pixels[xp + yp * sheet.getWidth()];
 			}
 		}
 		
@@ -59,7 +60,7 @@ public class SpriteSheet {
 				int[] spritePixels = new int[spriteSize * spriteSize];
 				for(int y0 = 0; y0 < spriteSize; y0++) {
 					for(int x0 = 0; x0 < spriteSize; x0++) {
-						spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * WIDTH];
+						spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * this.width];
 					}
 				}
 				Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
@@ -72,19 +73,31 @@ public class SpriteSheet {
 	public SpriteSheet(String path, int size) {
 		this.path = path;
 		SIZE = size;
-		WIDTH = size;
-		HEIGHT = size;
-		pixels = new int[WIDTH * HEIGHT];
+		width = size;
+		height = size;
+		SPRITE_WIDTH = 16;
+		SPRITE_HEIGHT = 16;
+		pixels = new int[width * height];
 		load();
 	}
 	
 	public SpriteSheet(String path, int width, int height) {
 		this.path = path;
-		WIDTH = width;
-		HEIGHT = height;
-		SIZE = -1;
-		pixels = new int[WIDTH * HEIGHT];
+		this.width = width;
+		this.height = height;
+		SPRITE_WIDTH = 16;
+		SPRITE_HEIGHT = 16;
+		SIZE = 16;
+		pixels = new int[this.width * this.height];
 		load();
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 	
 	public Sprite[] getSprite() {
@@ -93,12 +106,21 @@ public class SpriteSheet {
 	
 	private void load() {
 		try {
+			System.out.print("Trying to load: " + path);
 			BufferedImage image = ImageIO.read(SpriteSheet.class.getResource(path));
-			int w = image.getWidth();
-			int h = image.getHeight();
-			image.getRGB(0, 0, w, h, pixels, 0, w);
+			System.out.println(" success!");
+			width = image.getWidth();
+			height = image.getHeight();
+			pixels = new int[width * height];
+			image.getRGB(0, 0, width, height, pixels, 0, width);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch(Exception e) {
+			System.err.println(" failed!");
 		}
+	}
+	
+	public int[] getPixels() {
+		return pixels;
 	}
 }

@@ -3,7 +3,7 @@ package com.sandwhalestudios.firstjavagame.entity.mob;
 import com.sandwhalestudios.firstjavagame.entity.Entity;
 import com.sandwhalestudios.firstjavagame.entity.particle.Particle;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
-import com.sandwhalestudios.firstjavagame.entity.projectile.SoundWaveProjectile;
+import com.sandwhalestudios.firstjavagame.entity.projectile.SphereProjectile;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 
@@ -11,6 +11,7 @@ public abstract class Mob extends Entity{
 	protected Direction dir;
 	protected boolean walking = false;
 	private int anim = 0;
+	protected boolean isSolid = true;
 	
 	protected enum Direction{
 		UP, DOWN, LEFT, RIGHT
@@ -62,25 +63,11 @@ public abstract class Mob extends Entity{
 	
 	public abstract void render(Screen screen);
 	
+	
+	//TODO: Change Sprite to Projectile for shoot method
 	protected void shoot(double x, double y, double theta) {
-		if(anim >= 8) anim = 0;
-		Projectile p = new SoundWaveProjectile(x, y, theta);
-		if(anim == 0)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 1)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 2)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 3)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 4)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 5)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else if(anim == 6)
-			p.setSprite(Sprite.ironMaidenNote1);
-		else
-			p.setSprite(Sprite.ironMaidenNote1);
+		//TODO: add code to animate projectiles
+		Projectile p = new SphereProjectile(x, y, theta);
 		level.add(p);
 		anim++;
 	}
@@ -98,5 +85,9 @@ public abstract class Mob extends Entity{
 			if(level.getTile(ix, iy).solid()) solid = true;
 		}
 		return solid;
+	}
+	
+	protected boolean isSolid() {
+		return isSolid;
 	}
 }

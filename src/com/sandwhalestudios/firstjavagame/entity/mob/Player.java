@@ -5,7 +5,7 @@ import java.util.List;
 import com.sandwhalestudios.firstjavagame.Game;
 import com.sandwhalestudios.firstjavagame.entity.Entity;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
-import com.sandwhalestudios.firstjavagame.entity.projectile.SoundWaveProjectile;
+import com.sandwhalestudios.firstjavagame.entity.projectile.SphereProjectile;
 import com.sandwhalestudios.firstjavagame.graphics.AnimatedSprite;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.graphics.Sprite;
@@ -46,7 +46,6 @@ public class Player extends Mob{
 	public Player(Keyboard input) {
 		this.input = input;
 		dir = Direction.DOWN;
-		//sprite = Sprite.player32FrontStill;
 	}
 	
 	public Player(int x, int y, Keyboard input) {
@@ -54,8 +53,7 @@ public class Player extends Mob{
 		this.y = y;
 		this.input = input;
 		dir = Direction.DOWN;
-		//sprite = Sprite.player32FrontStill;
-		fireRate = SoundWaveProjectile.FIRE_RATE;
+		fireRate = SphereProjectile.FIRE_RATE;
 	}
 	
 	public void update() {
@@ -158,7 +156,7 @@ public class Player extends Mob{
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
 			double theta = Math.atan2(dy, dx); //must put y first then x
 			shoot(x, y, theta);
-			fireRate = SoundWaveProjectile.FIRE_RATE;
+			fireRate = SphereProjectile.FIRE_RATE;
 		}
 	}
 
