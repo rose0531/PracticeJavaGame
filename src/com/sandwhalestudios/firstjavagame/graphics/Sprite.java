@@ -23,6 +23,7 @@ public class Sprite {
 	//Weapon, Projectile Sprites:
 	public static Sprite fireBall = new Sprite(16, 1, 1, SpriteSheet.projectiles);
 	public static Sprite enemyProjectile = new Sprite(16, 2, 1, SpriteSheet.projectiles);
+	public static Sprite wave = new Sprite(16, 3, 1, SpriteSheet.projectiles);
 	
 	//Corsshair Sprites:
 	public static Sprite crosshair = new Sprite(16, 0, 1, SpriteSheet.projectiles);
@@ -79,19 +80,21 @@ public class Sprite {
 		else SIZE = -1;
 		this.width = width;
 		this.height = height;
-		this.pixels = pixels;
+		this.pixels = new int[width * height];
+		for(int i = 0; i < pixels.length; i++) {
+			this.pixels[i] = pixels[i];
+		}
 	}
 	
 	public static Sprite[] split(SpriteSheet sheet) {
 		int amount = (sheet.getWidth() * sheet.getHeight()) / (sheet.SPRITE_WIDTH * sheet.SPRITE_HEIGHT);
 		Sprite[] sprites = new Sprite[amount];
-		System.out.println(amount);
 		int current = 0;
+		int[] pixels = new int[sheet.SPRITE_WIDTH * sheet.SPRITE_HEIGHT];
 		
 		for(int yp = 0; yp < sheet.getHeight() / sheet.SPRITE_HEIGHT; yp++) {
 			for(int xp = 0; xp < sheet.getWidth() / sheet.SPRITE_WIDTH; xp++) {
-				
-				int[] pixels = new int[sheet.SPRITE_WIDTH * sheet.SPRITE_HEIGHT];
+					
 				for(int y = 0; y < sheet.SPRITE_HEIGHT; y++) {
 					for(int x = 0; x < sheet.SPRITE_WIDTH; x++) {
 						int xo = x + xp * sheet.SPRITE_WIDTH;

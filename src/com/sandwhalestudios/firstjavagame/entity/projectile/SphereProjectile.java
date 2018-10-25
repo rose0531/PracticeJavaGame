@@ -12,10 +12,10 @@ public class SphereProjectile extends Projectile{
 	public SphereProjectile(double x, double y, double dir) {
 		super(x, y, dir);
 		range = random.nextInt(20) + 300;
-		speed = 4.5f;//3.5
+		speed = 1.0f;
 		damage = 20;
 		fireRateMultiplier = 1;
-		sprite = Sprite.fireBall;
+		sprite = Sprite.wave;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);
 	}
@@ -43,7 +43,7 @@ public class SphereProjectile extends Projectile{
 	
 	
 	public void render(Screen screen) {
-		screen.renderProjectile((int)x, (int)y, this);
+		screen.renderProjectile((int)x, (int)y, this, angle);
 	}
 
 }

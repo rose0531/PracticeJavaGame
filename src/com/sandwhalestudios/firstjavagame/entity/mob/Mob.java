@@ -65,10 +65,9 @@ public abstract class Mob extends Entity{
 	
 	
 	//TODO: Change Sprite to Projectile for shoot method
-	protected void shoot(double x, double y, double theta, Sprite sprite) {
+	protected void shoot(double x, double y, double theta) {
 		//TODO: add code to animate projectiles
 		Projectile p = new SphereProjectile(x, y, theta);
-		p.setSprite(sprite);
 		level.add(p);
 		anim++;
 	}

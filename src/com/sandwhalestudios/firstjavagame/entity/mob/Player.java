@@ -43,8 +43,6 @@ public class Player extends Mob{
 
 	private AnimatedSprite animSprite = playerAnimFrontBob;
 	
-	private Sprite projectileSprite = Sprite.fireBall;
-	
 	public Player(Keyboard input) {
 		this.input = input;
 		dir = Direction.DOWN;
@@ -157,7 +155,7 @@ public class Player extends Mob{
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
 			double theta = Math.atan2(dy, dx); //must put y first then x
-			shoot(x, y, theta, projectileSprite);
+			shoot(x, y, theta);
 			fireRate = SphereProjectile.FIRE_RATE;
 		}
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import com.sandwhalestudios.firstjavagame.Game;
 import com.sandwhalestudios.firstjavagame.entity.mob.Mob.Direction;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
+import com.sandwhalestudios.firstjavagame.entity.projectile.SphereProjectile;
 import com.sandwhalestudios.firstjavagame.graphics.AnimatedSprite;
 import com.sandwhalestudios.firstjavagame.graphics.Font;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
@@ -19,7 +20,6 @@ public class Shooter extends Mob{
 	private AnimatedSprite pigExRight = new AnimatedSprite(SpriteSheet.pigExecutionerAnimRight, 32, 32, 8, 7);
 	private AnimatedSprite pigExUp = new AnimatedSprite(SpriteSheet.pigExecutionerAnimUp, 32, 32, 8, 7);
 	private AnimatedSprite animSprite = pigExDown; //pig executioner
-	private Sprite projectileSprite = Sprite.enemyProjectile;
 	
 	private int fireRate = 0;
 	private int time = 0;
@@ -100,7 +100,7 @@ public class Shooter extends Mob{
 			double px = player.getX();
 			double py = player.getY();
 			double theta = Math.atan2(py - y, px - x); //must put y first then x
-			shoot(x, y, theta, projectileSprite);
+			shoot(x, y, theta);
 			fireRate = 1;
 		}
 	}
@@ -139,7 +139,7 @@ public class Shooter extends Mob{
 	}
 
 	public void render(Screen screen) {
-		Debug.drawRect(screen, 30*16, 25*16, 100, 40, true);
+		//Debug.drawRect(screen, 30*16, 25*16, 100, 40, true);
 		screen.renderMob((int)x, (int)y, this, flip);
 	}
 
