@@ -12,20 +12,20 @@ public class SphereProjectile extends Projectile{
 	public SphereProjectile(double x, double y, double dir) {
 		super(x, y, dir);
 		range = random.nextInt(20) + 300;
-		speed = 1.0f;
+		speed = 4.0f;
 		damage = 20;
 		fireRateMultiplier = 1;
-		sprite = Sprite.wave;
+		sprite = Sprite.rotate(Sprite.wave, angle);
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);
 	}
+
 	
 	public void update() {
 		if(level.tileCollision((int)(x + nx), (int)(y + ny), 12, 2, 2)) {
 			level.add(new ParticleSpawner((int)x + 8, (int)y + 8, 125, 50, level, Sprite.fireParticle));//125,50
 			remove();
 		}
-		//level.add(new ParticleSpawner((int)x, (int)y, 5, 2, level, Sprite.fireParticle));
 		move();
 	}
 	
@@ -43,7 +43,7 @@ public class SphereProjectile extends Projectile{
 	
 	
 	public void render(Screen screen) {
-		screen.renderProjectile((int)x, (int)y, this, angle);
+		screen.renderProjectile((int)x, (int)y, this);
 	}
 
 }

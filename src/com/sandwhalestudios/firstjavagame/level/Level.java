@@ -13,6 +13,9 @@ import com.sandwhalestudios.firstjavagame.graphics.Screen;
 import com.sandwhalestudios.firstjavagame.level.tile.Tile;
 import com.sandwhalestudios.firstjavagame.util.Vector2i;
 
+/*Level Class keeps track of everything in the level
+ * -> Players, Enemies, Projectiles, Entities*/
+
 public class Level {
 	
 	public int width, height;
