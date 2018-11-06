@@ -57,6 +57,7 @@ public class Shooter extends Mob{
 			flip = false;
 		}
 		
+		/* Gets a list of players within a certain radius and chases the player that is closest to the Shooter*/
 		List<Player> players = level.getPlayers(this, 200);
 		if(players.size() > 0) {
 			double min = 0;

@@ -24,6 +24,7 @@ public class Sprite {
 	public static Sprite fireBall = new Sprite(16, 1, 1, SpriteSheet.projectiles);
 	public static Sprite enemyProjectile = new Sprite(16, 2, 1, SpriteSheet.projectiles);
 	public static Sprite wave = new Sprite(16, 3, 1, SpriteSheet.projectiles);
+	public static Sprite melee = new Sprite(16, 4, 1, SpriteSheet.projectiles);
 	
 	//Corsshair Sprites:
 	public static Sprite crosshair = new Sprite(16, 0, 1, SpriteSheet.projectiles);

@@ -2,6 +2,7 @@ package com.sandwhalestudios.firstjavagame.entity.mob;
 
 import com.sandwhalestudios.firstjavagame.entity.Entity;
 import com.sandwhalestudios.firstjavagame.entity.particle.Particle;
+import com.sandwhalestudios.firstjavagame.entity.projectile.MeleeAttack;
 import com.sandwhalestudios.firstjavagame.entity.projectile.Projectile;
 import com.sandwhalestudios.firstjavagame.entity.projectile.SphereProjectile;
 import com.sandwhalestudios.firstjavagame.graphics.Screen;
@@ -10,7 +11,7 @@ import com.sandwhalestudios.firstjavagame.graphics.Sprite;
 public abstract class Mob extends Entity{
 	protected Direction dir;
 	protected boolean walking = false;
-	private int anim = 0;
+	//private int anim = 0;
 	protected boolean isSolid = true;
 	
 	protected enum Direction{
@@ -69,7 +70,13 @@ public abstract class Mob extends Entity{
 		//TODO: add code to animate projectiles
 		Projectile p = new SphereProjectile(x, y, theta);
 		level.add(p);
-		anim++;
+		//anim++;
+	}
+	
+	protected void melee(double x, double y, double theta) {
+		Projectile p = new MeleeAttack(x, y, theta);
+		level.add(p);
+		//anim++;
 	}
 	
 	

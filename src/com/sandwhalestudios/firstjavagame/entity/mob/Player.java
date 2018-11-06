@@ -25,6 +25,7 @@ public class Player extends Mob{
 	private boolean dodging = false;
 	private boolean dodgeCooldown = false;
 	private boolean shooting = false;
+	private boolean melee = false;
 	private double prevX = 0, prevY = 0;
 	private int fireRate = 0;
 	private int dodgeTimer = 0;
@@ -65,10 +66,13 @@ public class Player extends Mob{
 			dodging = true;
 			walking = false;
 		}
-		if(Mouse.isLeftButtonPressed())
-			shooting = true;
-		else
-			shooting = false;
+		if(Mouse.isLeftButtonPressed()) {
+			melee = true;
+			//shooting = true;
+		}else {
+			melee = false;
+			//shooting = false;
+		}
 		
 		
 		
@@ -138,6 +142,7 @@ public class Player extends Mob{
 		prevY = ya;
 		clear();
 		updateShooting();
+		updateMelee();
 	}
 	
 	
@@ -146,6 +151,15 @@ public class Player extends Mob{
 			Projectile p = level.getProjectiles().get(i);
 			if(p.isRemoved())
 				level.getProjectiles().remove(i);
+		}
+	}
+	
+	private void updateMelee() {
+		if(melee) {
+			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
+			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
+			double theta = Math.atan2(dy, dx);
+			melee(x, y, theta);
 		}
 	}
 	
